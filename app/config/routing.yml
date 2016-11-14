@@ -1,7 +1,15 @@
 admin:
     path:      /admin
     defaults:  { _controller: AdminBundle:Default:index }
-    
+
+login:
+    path:      /admin/login
+    defaults:  { _controller: AdminBundle:Default:login }
+
+users:
+    path:      /admin/users
+    defaults:  { _controller: AdminBundle:Default:users }
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

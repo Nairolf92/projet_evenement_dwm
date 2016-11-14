@@ -24,65 +24,65 @@ class User
     /**
      * @var bool
      *
-     * @ORM\Column(name="gender", type="boolean")
+     * @ORM\Column(name="gender", type="boolean", nullable=true)
      */
-    private $gender;
+    private $gender = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
-    private $name;
+    private $name = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", length=255)
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
      */
-    private $first_name;
+    private $first_name = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
      */
-    private $password;
+    private $password = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="zipcode", type="string", length=255)
+     * @ORM\Column(name="zipcode", type="string", length=255, nullable=true)
      */
-    private $zipcode;
+    private $zipcode = null;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birth_date", type="date")
+     * @ORM\Column(name="birth_date", type="date", nullable=true)
      */
-    private $birthDate;
+    private $birthDate = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
-    private $email;
+    private $email = null;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
-    private $date;
+    private $date = null;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="status", type="integer")
+     * @ORM\Column(name="status", type="integer", nullable=true)
      */
-    private $status;
+    private $status = null;
 
 
     /**
