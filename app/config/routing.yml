@@ -1,8 +1,7 @@
 admin:
-    resource: "@AdminBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
+    path:      /admin
+    defaults:  { _controller: AdminBundle:Default:index }
+    
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
