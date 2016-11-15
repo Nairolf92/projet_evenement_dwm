@@ -1,1 +1,18 @@
-{{ allowed }}
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Connexion{% endblock %}
+
+{% block body %}
+	<div class="container-fluid" style="background-color: black;height: 1000px;">
+		<div class="row">
+			<div>
+				<img class="img-responsive center-block" src="{{ asset('images/logo.png') }}" alt="logo">
+			</div> 
+		</div>
+		<div class="row">
+			<div class="col-lg-offset-4">
+				{{ form(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}
