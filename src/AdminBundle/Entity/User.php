@@ -91,6 +91,10 @@ class User
      */
     private $deleted = null;
 
+    public function __construct() {
+        $this->date         = new \Datetime();
+    }
+
     /**
      * Get id
      *
