@@ -19,7 +19,7 @@ class DefaultController extends Controller
         $user->setName('Kelnerowski');
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
-        $em->flush();
+        //$em->flush();
         return $this->render('AppBundle:Default:index.html.twig');
 
     }
