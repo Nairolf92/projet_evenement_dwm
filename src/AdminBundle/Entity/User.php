@@ -84,6 +84,12 @@ class User
      */
     private $status = null;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="deleted", type="boolean", nullable=true)
+     */
+    private $deleted = null;
 
     /**
      * Get id
@@ -270,6 +276,7 @@ class User
      *
      * @return User
      */
+    
     public function setDate($date)
     {
         $this->date = $date;
@@ -289,7 +296,9 @@ class User
 
     /**
      * Set statutInscription
-     *
+     * 0 : En attente de validation
+     * 1 : Validée
+     * 2 : Refusée
      * @param integer $status
      *
      * @return User
@@ -309,6 +318,30 @@ class User
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param boolean $deleted
+     *
+     * @return User
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return bool
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
     }
 }
 
