@@ -31,8 +31,8 @@ class DefaultController extends Controller
             ->add('gender', CheckboxType::class)
             ->add('gender', ChoiceType::class, array(
                 'choices'  => array(
-                    'Homme' => true,
-                    'Femme' => false,
+                    'Monsieur' => true,
+                    'Madame' => false,
                 ),
             ))
             ->add('birth_date', dateType::class)

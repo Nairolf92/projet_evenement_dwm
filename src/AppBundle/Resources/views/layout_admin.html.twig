@@ -25,10 +25,17 @@
     {% block body %}
     {% endblock %}
 
-	  <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bootstrap-table/dist/bootstrap-table.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bootstrap-table/dist/locale/bootstrap-table-fr-FR.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bootstrap-table/dist/locale/bootstrap-table-fr-FR.min.js') }}">
+    </script>
     <script type="text/javascript" src="{{ asset('form-validator/jquery.form-validator.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('form-validator/lang/fr.js') }}"></script>
+    <script type="text/javascript">
+        $.validate({
+        lang: 'fr'
+        });
+    </script>
   </body>
 </html>
