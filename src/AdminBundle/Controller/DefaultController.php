@@ -48,7 +48,7 @@ class DefaultController extends Controller
 		  ->getRepository('AdminBundle:User')
 		;
 		$listUsers = $repository->findAll();
-
+	/*	var_dump($listUsers);*/
 		// SEND VIEW
 		return $this->render('AdminBundle:Default:users.html.twig', array(
    			'users' => $listUsers,
