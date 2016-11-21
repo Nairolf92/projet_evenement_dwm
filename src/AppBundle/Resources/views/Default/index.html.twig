@@ -252,16 +252,16 @@
 						<div id="contact-section">
 							<h3>S'inscrire</h3>
 							{{ form_start(form, {'attr': {'style' : 'margin-bottom:35px;color:black;', 'novalidate' : 'novalidate'}}) }}
+
+							{{ form_label(form.gender, "Civilité ") }}
+			    			{{ form_widget(form.gender) }}
 							
 							{{ form_label(form.first_name, "Prenom ") }}
-			    			{{ form_widget(form.first_name,  {'attr': {'data-validation' : 'email'}} ) }}
+			    			{{ form_widget(form.first_name) }}
 
 							{{ form_label(form.name, "Nom ") }}
 			    			{{ form_widget(form.name) }}
-
-			    			{{ form_label(form.gender, "Civilité ") }}
-			    			{{ form_widget(form.gender) }}
-
+			    			
 							{{ form_label(form.zipcode, "Code Postal ") }}
 			    			{{ form_widget(form.zipcode) }}
 
@@ -269,14 +269,10 @@
 			    			{{ form_widget(form.birth_date) }}
 
 			    			{{ form_label(form.email, "Email") }}
-			    			{{ form_widget(form.email, {'attr': {'style' : 'margin-bottom:10px;'}} ) }}
+			    			{{ form_widget(form.email, {'attr': {'style' : 'margin-bottom:10px;', 'data-validation' : 'email'}} ) }}
 
 			    			{{ form_widget(form.save) }}
 			    			{{ form_end(form) }}
-							
-    						<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-			    			<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-
   						</div>
 					</div>
 				</div>
@@ -292,10 +288,5 @@
         </div>
     </footer>
     <!--/#footer-->
-    <script>
-  $.validate({
-    lang: 'fr'
-  });
-</script>
    
 {% endblock %}

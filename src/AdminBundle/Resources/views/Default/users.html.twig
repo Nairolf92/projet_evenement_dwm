@@ -52,15 +52,15 @@
 				    	<td>{{ user.firstName }}</td>
 				    	<td>{{ user.name }}</td>
 				    	<td>{{ user.zipcode }}</td>
-				    	<td>{{ user.birthDate }}</td>
+				    	<td>{{ user.birthDate.date }}</td>
 				    	<td>{{ user.email }}</td>
-				    	<td>{{ user.date.date}}</td>
+				    	<td>{{ user.date.date }}</td>
 				    	<td>{{ user.status }}</td>
 				    	<td>{{ user.deleted }}</td>
 				    	<td>
-				    		<a href="" title="Modifier">
+				    		<a data-toggle="modal" href="#modifyModal" title="Modifier">
             				<i class="glyphicon glyphicon-pencil"></i>
-            				<a href="" title="Supprimer">
+            				<a data-toggle="modal" href="#deleteModal" title="Supprimer">
             				<i class="glyphicon glyphicon-remove"></i>
             			</td>
 				    </tr>
@@ -68,4 +68,35 @@
 		    </tbody>
 		</table>
 	</div>
+	<div class="modal fade" id="modifyModal" role="dialog" style="color : black;">
+    	<div class="modal-dialog">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h2 class="modal-title text-center">Modifier un utilisateur</h2>
+		        </div>
+		        <div class="modal-body">
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		    </div>
+	    </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" role="dialog" style="color : black;">
+    	<div class="modal-dialog">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h2 class="modal-title text-center">Supprimer un utilisateur</h2>
+		        </div>
+		        <div class="modal-body">
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		    </div>
+	    </div>
+    </div>
 {% endblock %}
