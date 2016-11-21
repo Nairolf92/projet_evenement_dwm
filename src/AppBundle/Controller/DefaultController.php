@@ -21,32 +21,23 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-
-        /*$user->setGender(1);
-        $user->setName('Kelnerowski');
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();*/
-
-        // create a task and give it some dummy data for this example
         $user = new User();
 
-        // On crée le FormBuilder grâce au service form factory
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $user);
-
-        // On ajoute les champs de l'entité que l'on veut à notre formulaire
         $formBuilder
             ->add('name',     TextType::class)
-            ->add('first_name',   TextareaType::class)
+            ->add('first_name',   TextType::class)
+            ->add('zipcode',   TextType::class)
             ->add('gender', CheckboxType::class)
-            ->add('gender', CheckboxType::class)
-            ->add('save',      SubmitType::class)
             ->add('gender', ChoiceType::class, array(
                 'choices'  => array(
                     'Homme' => true,
                     'Femme' => false,
                 ),
             ))
+            ->add('birth_date', dateType::class)
+            ->add('email', TextType::class)
+            ->add('save',      SubmitType::class)
         ;
 
         $form = $formBuilder->getForm();

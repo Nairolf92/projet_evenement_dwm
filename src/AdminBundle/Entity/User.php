@@ -82,14 +82,14 @@ class User
      *
      * @ORM\Column(name="status", type="integer", nullable=true)
      */
-    private $status = null;
+    private $status = 0;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="deleted", type="boolean", nullable=true)
      */
-    private $deleted = null;
+    private $deleted = false;
 
     public function __construct() {
         $this->date         = new \Datetime();
