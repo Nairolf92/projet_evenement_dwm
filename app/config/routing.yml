@@ -10,6 +10,11 @@ users:
     path:      /admin/users
     defaults:  { _controller: AdminBundle:Default:users }
 
+logout:
+    path:      /admin/logout
+    defaults:  { _controller: AdminBundle:Default:logout }
+
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

@@ -38,9 +38,9 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
      */
-    private $first_name = null;
+    private $firstName = null;
 
     /**
      * @var string
@@ -59,7 +59,7 @@ class User
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birth_date", type="date", nullable=true)
+     * @ORM\Column(name="birthDate", type="date", nullable=true)
      */
     private $birthDate = null;
 
@@ -154,27 +154,27 @@ class User
     }
 
     /**
-     * Set first_name
+     * Set firstName
      *
-     * @param string $first_name
+     * @param string $firstName
      *
      * @return User
      */
-    public function setFirstName($first_name)
+    public function setFirstName($firstName)
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     /**
-     * Get first_name
+     * Get firstName
      *
      * @return string
      */
     public function getFirstName()
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Admin
@@ -25,6 +26,7 @@ class Admin
      * @var string
      *
      * @ORM\Column(name="login", type="string", length=255, nullable=true)
+     * @Assert\NotNull(message = "Merci d'entrer un login.")
      */
     private $login;
 
@@ -32,6 +34,7 @@ class Admin
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     * @Assert\NotNull(message = "Merci d'entrer un mot de passe.")
      */
     private $password;
 

@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class DefaultController extends Controller
 {
@@ -32,15 +34,37 @@ class DefaultController extends Controller
      */
     public function usersAction()
     {
+    	// CHECK IF SESSION IS PRESENT
+    	$session = new Session();
+    	if($session->get('allowed') == false)
+    	{
+			return $this->redirectToRoute('admin');
+    	}
+
+		// GET ALL USERS
 		$repository = $this
 		  ->getDoctrine()
 		  ->getManager()
 		  ->getRepository('AdminBundle:User')
 		;
 		$listUsers = $repository->findAll();
+
+		// SEND VIEW
 		return $this->render('AdminBundle:Default:users.html.twig', array(
    			'users' => $listUsers,
 		));
+    }
+
+	/**
+     * @Route("/admin/logout", name="logout")
+     */
+    public function logoutAction()
+    {
+    	$session = new Session();
+    	if($session->get('allowed') == true) {
+    		$session->set('allowed', false);
+    	}  	
+    	return $this->redirectToRoute('admin');
     }
 
  	/**
@@ -50,13 +74,12 @@ class DefaultController extends Controller
     {
     	// PARTIE SESSION
     	$session = new Session();
-    	
-    	/*if($session->get('allowed') == true)
+    	if($session->get('allowed') == true)
     	{
 			return $this->redirectToRoute('admin');
-    	}*/
-    	$session->set('allowed', false);
-        $allowed = $session->get('allowed');
+    	}
+    	//$session->set('allowed', false);
+        //$allowed = $session->get('allowed');
 
         // PARTIE FORMULAIRE
     	$admin = new Admin();
@@ -74,13 +97,32 @@ class DefaultController extends Controller
         if ($request->isMethod('POST')) {
           	$form->handleRequest($request);
           	if ($form->isValid()) {
-
+          		$repository = $this
+				  ->getDoctrine()
+				  ->getManager()
+				  ->getRepository('AdminBundle:Admin')
+				;
+          		$admin = $repository->findOneBy(array(
+          			'login' => $form["login"]->getData(),
+          			'password' => $form["password"]->getData()
+          		));
+          		if(!null == $admin){
+          			$session->set('allowed', true);
+          			return $this->redirectToRoute('users');
+          		}else{
+          			return $this->render('AdminBundle:Default:login.html.twig', array(
+		   			'form' => $form->createView(),
+		   			'essai' => 'true',
+		   			'nb_essai'=> '1'
+					));
+          		}
           	}
         }
 
     	return $this->render('AdminBundle:Default:login.html.twig', array(
-   			'allowed' => $allowed,
-   			'form' => $form->createView()
+   			'form' => $form->createView(),
+   			'essai' => 'false',
+   			'nb_essai'=> '0'
 		));
     }
 }
