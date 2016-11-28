@@ -56,7 +56,9 @@ class DefaultController extends Controller
                     'Non' => false,
                 ),
             ))
-            ->add('birth_date', dateType::class)
+            ->add('birth_date', dateType::class, array(
+                'widget' => 'choice',
+                'years' => range(1900,2012)))
             ->add('email', TextType::class)
             ->add('save',      SubmitType::class)
         ;
