@@ -3,6 +3,10 @@
 {% block title %}{{ parent() }} - Index{% endblock %}
 
 {% block body %}
+		<!-- <div class="alert alert-success alert-dismissible">
+		  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  	<div><strong>Félicitations, </strong>votre inscription a été prise en compte.</div>
+		</div> -->
   <header id="header" role="banner">		
 		<div class="main-nav">
 			<div class="container">
@@ -22,8 +26,8 @@
 		                    <span class="icon-bar"></span>
 		                    <span class="icon-bar"></span>
 		                </button>
-		                <a class="navbar-brand" href="index.html">
-		                	<p style="color:white;">LOGO</p>
+		                <a class="navbar-brand" href="public">
+		                	<img class="image-responsive" src="{{ asset ('images/logo_web.png') }}">
 		                </a>                    
 		            </div>
 		            <div class="collapse navbar-collapse">
@@ -50,7 +54,7 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="item active">
-					<img class="img-responsive" src="{{ asset ('images/slider/bg1.jpg') }}" alt="slider">						
+					<img class="img-responsive" src="{{ asset ('images/slider/bg1_new.jpg') }}" alt="slider">						
 					<div class="carousel-caption">
 						<h2>null</h2>
 						<h4>slide 1</h4>
@@ -108,6 +112,14 @@
 		</div>
 	</section><!--/#explore-->
 
+	<section id="about">
+		<div class="about-content">					
+					<h2>About Us</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				
+		</div>
+	</section><!--/#about-->
+
 	<section id="event">
 		<div class="container">
 			<div class="row">
@@ -146,21 +158,18 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="single-event">
-											<img class="img-responsive" src="{{ asset ('images/event/event1.jpg') }}" alt="event-image">
 											<h4>Chester Bennington</h4>
 											<h5>Vocal</h5>
 										</div>
 									</div>
 									<div class="col-sm-4">
 										<div class="single-event">
-											<img class="img-responsive" src="{{ asset ('images/event/event2.jpg') }}" alt="event-image">
 											<h4>Mike Shinoda</h4>
 											<h5>vocals, rhythm guitar</h5>
 										</div>
 									</div>
 									<div class="col-sm-4">
 										<div class="single-event">
-											<img class="img-responsive" src="{{ asset ('images/event/event3.jpg') }}" alt="event-image">
 											<h4>Rob Bourdon</h4>
 											<h5>drums</h5>
 										</div>
@@ -173,15 +182,6 @@
 			</div>			
 		</div>
 	</section><!--/#event-->
-
-	<section id="about">
-		<div class="about-content">					
-					<h2>About Evento</h2>
-					<p>We have created an extremely positive and relaxed environment all geared towards developing your skills whether you are an absolute beginner trying to get off the ground or an accomplished player looking to move to the next level. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-					<a href="#" class="btn btn-primary">View Date & Place <i class="fa fa-angle-right"></i></a>
-				
-		</div>
-	</section><!--/#about-->
 	
 	<section id="sponsor">
 		<div id="sponsor-carousel" class="carousel slide" data-interval="false">
@@ -231,48 +231,15 @@
 				<div class="row">
 					<div class="col-sm-3 col-sm-offset-4">
 						<div class="contact-text">
-							<h3>Contact</h3>
-							<address>
-								E-mail: promo@party.com<br>
-								Phone: +1 (123) 456 7890<br>
-								Fax: +1 (123) 456 7891
-							</address>
+							
 						</div>
 						<div class="contact-address">
-							<h3>Contact</h3>
-							<address>
-								Unit C2, St.Vincent's Trading Est.,<br>
-								Feeder Road,<br>
-								Bristol, BS2 0UY<br>
-								United Kingdom
-							</address>
+							
 						</div>
 					</div>
 					<div class="col-sm-5">
 						<div id="contact-section">
-							<h3>S'inscrire</h3>
-							{{ form_start(form, {'attr': {'style' : 'margin-bottom:35px;color:black;', 'novalidate' : 'novalidate'}}) }}
-
-							{{ form_label(form.gender, "Civilité ") }}
-			    			{{ form_widget(form.gender) }}
 							
-							{{ form_label(form.first_name, "Prenom ") }}
-			    			{{ form_widget(form.first_name) }}
-
-							{{ form_label(form.name, "Nom ") }}
-			    			{{ form_widget(form.name) }}
-			    			
-							{{ form_label(form.zipcode, "Code Postal ") }}
-			    			{{ form_widget(form.zipcode) }}
-
-							{{ form_label(form.zipcode, "Date de naissance ") }}
-			    			{{ form_widget(form.birth_date) }}
-
-			    			{{ form_label(form.email, "Email") }}
-			    			{{ form_widget(form.email, {'attr': {'style' : 'margin-bottom:10px;', 'data-validation' : 'email'}} ) }}
-
-			    			{{ form_widget(form.save) }}
-			    			{{ form_end(form) }}
   						</div>
 					</div>
 				</div>

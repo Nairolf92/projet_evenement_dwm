@@ -21,6 +21,15 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+
+        return $this->render('AppBundle:Default:index.html.twig');
+    }
+
+    /**
+     * @Route("/public/inscription", name="register")
+     */
+    public function registerAction(Request $request)
+    {
         $user = new User();
 
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $user);
@@ -35,6 +44,18 @@ class DefaultController extends Controller
                     'Madame' => false,
                 ),
             ))
+            ->add('device', ChoiceType::class, array(
+                'choices'  => array(
+                    'PC' => true,
+                    'Console' => false,
+                ),
+            ))
+            ->add('visited', ChoiceType::class, array(
+                'choices'  => array(
+                    'Oui' => true,
+                    'Non' => false,
+                ),
+            ))
             ->add('birth_date', dateType::class)
             ->add('email', TextType::class)
             ->add('save',      SubmitType::class)
@@ -43,17 +64,16 @@ class DefaultController extends Controller
         $form = $formBuilder->getForm();
 
         if ($request->isMethod('POST')) {
-          	$form->handleRequest($request);
-          	if ($form->isValid()) {
-          	  // On enregistre notre objet $advert dans la base de données, par exemple
-          		$em = $this->getDoctrine()->getManager();
-          	  	$em->persist($user);
-           	 	$em->flush();
-          	}
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+              $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+              $em->flush();
+            }
+            return $this->redirectToRoute('homepage');
         }
-
-        return $this->render('AppBundle:Default:index.html.twig', array(
-            'form' => $form->createView(),
+        return $this->render('AppBundle:Default:register.html.twig', array(
+          'form' => $form->createView(),
         ));
     }
 }

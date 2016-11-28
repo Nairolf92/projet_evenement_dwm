@@ -111,7 +111,7 @@ h2 {
 
 .navbar-brand img {
   position: absolute;
-  top: -35px;
+  top: -4px;
 }
 
 .navbar-right {
@@ -730,7 +730,7 @@ h2 {
 
 
 /*************************
-******Footer CSS****
+********Footer CSS********
 **************************/
 
 #footer {
@@ -751,4 +751,28 @@ h2 {
   color:#1B7B98
 }
 
+/*************************
+*********Register*********
+**************************/
 
+body{
+  background-color: #f7ab24;
+}
+
+.container-register{
+  min-height: 699px;
+}
+
+.title_register {
+  color: black;
+  text-align: center;
+  font-size: 3em;
+}
+
+.form-register input,select{
+  margin-bottom: 8px;
+}
+
+.navbar-header-register{
+  position: absolute;
+}

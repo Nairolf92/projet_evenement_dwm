@@ -71,6 +71,20 @@ class User
     private $email = null;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="device", type="boolean", nullable=true)
+     */
+    private $device = null;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="visited", type="boolean", nullable=true)
+     */
+    private $visited = null;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
@@ -274,13 +288,61 @@ class User
     }
 
     /**
+     * Set device
+     *
+     * @param boolean $device
+     *
+     * @return User
+     */
+    public function setDevice($device)
+    {
+        $this->device = $device;
+
+        return $this;
+    }
+
+    /**
+     * Get device
+     *
+     * @return bool
+     */
+    public function getDevice()
+    {
+        return $this->device;
+    }
+
+    /**
+     * Set visited
+     *
+     * @param boolean $visited
+     *
+     * @return User
+     */
+    public function setVisited($visited)
+    {
+        $this->visited = $visited;
+
+        return $this;
+    }
+
+    /**
+     * Get visited
+     *
+     * @return bool
+     */
+    public function getVisited()
+    {
+        return $this->visited;
+    }
+
+    /**
      * Set date
      *
      * @param \DateTime $date
      *
      * @return User
      */
-    
+
     public function setDate($date)
     {
         $this->date = $date;

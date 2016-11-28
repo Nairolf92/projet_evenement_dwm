@@ -1,0 +1,56 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block body %}
+		<div class="navbar-header-register">
+            <a class="navbar-brand" href="../public">
+            	<img class="image-responsive logo" src="{{ asset ('images/logo_web.png') }}">
+            </a>                    
+		</div>
+		<div class="container-register">
+		<h3 class="title_register">Inscription</h3>
+		<div class="row">
+			<div class="col-xs-6 col-xs-offset-3">
+				{{ form_start(form, {'attr': {'style' : 'margin-bottom:35px;color:black;', 'novalidate' : 'novalidate', 'class' : 'form-register'}}) }}
+
+				{{ form_label(form.gender, "Civilité ") }}
+				{{ form_widget(form.gender) }}
+
+				{{ form_label(form.first_name, "Prenom ") }}
+				{{ form_widget(form.first_name, {'attr': {'data-validation' : 'alphanumeric'}} ) }}
+
+				{{ form_label(form.name, "Nom ") }}
+				{{ form_widget(form.name, {'attr': {'data-validation' : 'alphanumeric'}} ) }}
+
+				{{ form_label(form.zipcode, "Code Postal ") }}
+				{{ form_widget(form.zipcode, {'attr': {'data-validation' : 'number length', 'data-validation-length' : '5'}} ) }}
+
+				{{ form_label(form.zipcode, "Date de naissance ") }}
+				{{ form_widget(form.birth_date, {'attr': {'class' : 'form-register-birth'}} ) }}
+
+				{{ form_label(form.email, "Email") }}
+				{{ form_widget(form.email, {'attr': {'style' : 'margin-bottom:10px;', 'data-validation' : 'email'}} ) }}
+
+				{{ form_label(form.gender, "Quel est votre support de prédilection ?") }}
+				{{ form_widget(form.device) }}
+
+				{{ form_label(form.gender, "Avez vous déjà participé à un de nos précédents salon ? ") }}
+				{{ form_widget(form.visited) }}
+
+				{{ form_widget(form.save) }}
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+
+	<div class="container-footer">
+		<footer id="footer" class="register-footer">
+	        <div class="container">
+	            <div class="text-center">               
+	            </div>
+	        </div>
+    	</footer>
+	</div>
+
+{% endblock %}
