@@ -1,0 +1,42 @@
+<div class="modal fade" id="modifyModal{{id}}" role="dialog" style="color : black;">
+	<div class="modal-dialog">
+      	<div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h2 class="modal-title text-center">Modifier un utilisateur</h2>
+	        </div>
+	        <div class="modal-body modify">
+	        	{{ form_start(form, {'attr': {'style' : 'margin-bottom:35px;color:black;', 'novalidate' : 'novalidate', 'class' : 'form-register'}}) }}
+				{{ form_label(form.gender, "Civilité ") }}
+				{{ form_widget(form.gender)}}
+
+				{{ form_label(form.first_name, "Prenom ") }}
+				{{ form_widget(form.first_name, {'attr': {'data-validation' : 'alphanumeric', 'value' : firstName}} ) }}
+
+				{{ form_label(form.name, "Nom ") }}
+				{{ form_widget(form.name, {'attr': {'data-validation' : 'alphanumeric', 'value' : name}} ) }}
+
+				{{ form_label(form.zipcode, "Code Postal ") }}
+				{{ form_widget(form.zipcode, {'attr': {'data-validation' : 'number length', 'data-validation-length' : '5', 'value' : zipcode}} ) }}
+
+				{{ form_label(form.zipcode, "Date de naissance ") }}
+				{{ form_widget(form.birth_date, {'attr': {'class' : 'form-register-birth'}} ) }}
+
+				{{ form_label(form.email, "Email") }}
+				{{ form_widget(form.email, {'attr': {'style' : 'margin-bottom:10px;', 'data-validation' : 'email'}} ) }}
+
+				{{ form_label(form.gender, "Quel est votre support de prédilection ?") }}
+				{{ form_widget(form.device) }}
+
+				{{ form_label(form.gender, "Avez vous déjà participé à un de nos précédents salon ? ") }}
+				{{ form_widget(form.visited) }}
+
+				{{ form_widget(form.save) }}
+				{{ form_end(form) }}
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	    </div>
+    </div>
+</div>

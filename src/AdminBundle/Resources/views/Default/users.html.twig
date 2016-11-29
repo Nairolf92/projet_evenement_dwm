@@ -1,4 +1,4 @@
-{% extends "AppBundle::layout_admin.html.twig" %}
+{% extends "AdminBundle::layout_admin.html.twig" %}
 
 {% block title %}{{ parent() }} - Pannel Admin{% endblock %}
 
@@ -16,9 +16,6 @@
 	<div class="container" style="color: black;">
 		<h1 class="text-center" style="text-transform: initial;">Liste des utilisateurs</h1>
 		<div id="toolbar">
-	        <button id="remove" class="btn btn-danger" disabled>
-	            <i class="glyphicon glyphicon-remove"></i> Delete
-	        </button>
     	</div>
 		<table 
 			data-toggle="table"
@@ -30,6 +27,8 @@
             data-minimum-count-columns="2"
             data-pagination="true"
             data-id-field="id"
+            data-sort-name="date"
+  			data-sort-order="asc"
 		>
 		    <thead>
 		        <tr>
@@ -39,9 +38,12 @@
 		            <th>Code Postal</th>
 		            <th>Date de naissance</th>
 		            <th>Email</th>
-		            <th>Date d'inscription</th>
+		            <th 
+		            	data-field="date" 
+        				data-sortable="true">
+        				Date d'inscription
+        			</th>
 		            <th>Statut</th>
-		            <th>Supprimé</th>
 		            <th>Actions</th>
 		        </tr>
 		    </thead>
@@ -52,51 +54,42 @@
 				    	<td>{{ user.firstName }}</td>
 				    	<td>{{ user.name }}</td>
 				    	<td>{{ user.zipcode }}</td>
-				    	<td>{{ user.birthDate.date }}</td>
+				    	<td>{{ user.birthDate.date|date('d-m-Y') }}</td>
 				    	<td>{{ user.email }}</td>
-				    	<td>{{ user.date.date }}</td>
+				    	<td>{{ user.date.date|date('d-m-Y') }}</td>
 				    	<td>{{ user.status }}</td>
-				    	<td>{{ user.deleted }}</td>
 				    	<td>
-				    		<a data-toggle="modal" href="#modifyModal" title="Modifier">
-            				<i class="glyphicon glyphicon-pencil"></i>
-            				<a data-toggle="modal" href="#deleteModal" title="Supprimer">
-            				<i class="glyphicon glyphicon-remove"></i>
+				    		<a data-toggle="modal" data-title="Modifier" data-target="#modifyModal{{ user.id }}">
+            					<i class="glyphicon glyphicon-pencil"></i>
+            				</a>
+            				{{ render(controller('AdminBundle:Default:modify', {'id': user.id , 'gender' : user.gender, 'firstName' : user.firstName, 'name' : user.name, 'zipcode' : user.zipcode, 'birthDate' : user.birthDate.date, 'email' : user.email, 'date' : user.date.date, 'status' : user.status, 'device' : user.device, 'visited' : user.visited})) }}
+            				<a href="{{ path('delete', {'id' : user.id}) }}" title="Supprimer" onclick="ask_delete(event)">
+            					<i class="glyphicon glyphicon-remove"></i>
+            				</a>
             			</td>
+
 				    </tr>
+				    <script type="text/javascript">
+					    function ask_delete(event){
+					        event.preventDefault();
+					        swal({
+					          title: "Supprimer ?",
+					          text: "Etes-vous sûr de vouloir supprimer cet utilisateur ?",
+					          type: "warning",
+					          showCancelButton: true,
+					          confirmButtonColor: "#DD6B55",
+					          confirmButtonText: "Oui !",
+					          closeOnConfirm: false
+					        },
+					        function(){
+					          swal("Deleted!", "L'utilisateur a été supprimé", "success");
+							  window.location.href = '{{ path('delete', {'id' : user.id}) }}';
+        					});
+
+					    }
+					</script>
 				{% endfor %}
 		    </tbody>
 		</table>
 	</div>
-	<div class="modal fade" id="modifyModal" role="dialog" style="color : black;">
-    	<div class="modal-dialog">
-	      	<div class="modal-content">
-		        <div class="modal-header">
-		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h2 class="modal-title text-center">Modifier un utilisateur</h2>
-		        </div>
-		        <div class="modal-body">
-		        </div>
-		        <div class="modal-footer">
-		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        </div>
-		    </div>
-	    </div>
-    </div>
-
-    <div class="modal fade" id="deleteModal" role="dialog" style="color : black;">
-    	<div class="modal-dialog">
-	      	<div class="modal-content">
-		        <div class="modal-header">
-		          <button type="button" class="close" data-dismiss="modal">&times;</button>
-		          <h2 class="modal-title text-center">Supprimer un utilisateur</h2>
-		        </div>
-		        <div class="modal-body">
-		        </div>
-		        <div class="modal-footer">
-		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        </div>
-		    </div>
-	    </div>
-    </div>
 {% endblock %}
