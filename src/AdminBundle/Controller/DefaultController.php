@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -32,7 +33,7 @@ class DefaultController extends Controller
     	return $this->redirectToRoute('users');
     }
 
-	/**
+	   /**
      * @Route("/admin/users", name="users")
      */
     public function usersAction()
@@ -54,70 +55,98 @@ class DefaultController extends Controller
 			array('deleted' => 0)
 			);
 
-		dump($listUsers);
+		// dump($listUsers);
 		// SEND VIEW
 		return $this->render('AdminBundle:Default:users.html.twig', array(
    			'users' => $listUsers,
 		));
     }
 
-    public function modifyAction(Request $request, $id, $gender, $firstName, $name, $zipcode, $birthDate, $email, $date,$status, $device, $visited)
+    /**
+     * @Route("/admin/users/modifybase", name="modifybase")
+    */
+    public function modifybaseAction(Request $request)
+    {
+      dump($request->getForm());
+
+    }
+     /**
+     * @Route("/admin/users/modify", name="modify")
+     */
+    public function modifyAction(Request $request, $id, $gender, $firstName, $name, $address, $city, $zipcode, $birthDate, $email,$status, $device, $visited)
     {
     	$user = new User();
 
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $user);
-        $formBuilder
-            ->add('name',     TextType::class)
-            ->add('first_name',   TextType::class)
-            ->add('zipcode',   TextType::class)
-            ->add('gender', CheckboxType::class)
-            ->add('gender', ChoiceType::class, array(
-                'choices'  => array(
-                    'Monsieur' => true,
-                    'Madame' => false,
-                ),
-            ))
-            ->add('device', ChoiceType::class, array(
-                'choices'  => array(
-                    'PC' => true,
-                    'Console' => false,
-                ),
-            ))
-            ->add('visited', ChoiceType::class, array(
-                'choices'  => array(
-                    'Oui' => true,
-                    'Non' => false,
-                ),
-            ))
-            ->add('birth_date', dateType::class)
-            ->add('email', TextType::class)
-            ->add('save',      SubmitType::class)
-        ;
+      $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $user);
+      $formBuilder
+          ->add('name',     TextType::class)
+          ->add('first_name',   TextType::class)
+          ->add('zipcode',   TextType::class)
+          ->add('address',   TextType::class)
+          ->add('city',   TextType::class)
+          ->add('gender', ChoiceType::class, array(
+              'choices'  => array(
+                  'Monsieur' => true,
+                  'Madame' => false,
+              ),
+          ))
+          ->add('device', ChoiceType::class, array(
+              'choices'  => array(
+                  'PC' => true,
+                  'Console' => false,
+              ),
+          ))
+          ->add('visited', ChoiceType::class, array(
+              'choices'  => array(
+                  'Oui' => true,
+                  'Non' => false,
+              ),
+          ))
+          ->add('birthDate', dateType::class, array(
+                'widget' => 'choice',
+                'years' => range(1900,2012),
+                'data' =>  new \DateTime($birthDate)
+                ))
+          ->add('email', TextType::class)
+          ->add('status', ChoiceType::class, array(
+              'choices'  => array(
+                  'En attente de validation' => '0',
+                  'Validée' => '1',
+                  'Acceptée' => '2'
+              ),
+              'data' => $status
+          ))
+          ->add('save',      SubmitType::class)
+          ->add('id', HiddenType::class, array(
+          'data' => $id))
+      ;
+
 
         $form = $formBuilder->getForm();
-
+       
         if ($request->isMethod('POST')) {
+          dump($form->getData());
             $form->handleRequest($request);
+
             if ($form->isValid()) {
+              $user->setAddress($form["address"]->getData());
               $em = $this->getDoctrine()->getManager();
-/*              $user->setDeleted(1);*/
-			  $em = $this->getDoctrine()->getManager();
-			  $em->persist($user);
-	          $em->flush();
               $em->persist($user);
               $em->flush();
+              return $this->redirectToRoute('users');
             }
-            return $this->redirectToRoute('users');
         }
     	return $this->render('AdminBundle:Default:modify.html.twig', array(
     		'form' => $form->createView(),
     		'id' => $id,
+        'gender' => $gender,
     		'firstName' => $firstName,
     		'name' => $name,
+        'address' => $address,
+        'city' => $city,
     		'zipcode' => $zipcode,
     		'birthDate' => $birthDate,
     		'email' => $email,
-    		'date' => $date,
     		'status' => $status,
     		'device' => $device,
     		'visited' => $visited
@@ -133,7 +162,7 @@ class DefaultController extends Controller
 			$user->setDeleted(1);
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($user);
-           	$em->flush();
+      $em->flush();
 	    return $this->redirectToRoute('users');
     }
 

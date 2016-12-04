@@ -20,9 +20,14 @@ delete:
          _controller: AdminBundle:Default:delete 
 
 modify:
-    path:      /admin/users/modify/{id}
+    path:      /admin/users/modify
     defaults:  
          _controller: AdminBundle:Default:modify 
+
+modifybase:
+    path:      /admin/users/modifybase
+    defaults:  
+         _controller: AdminBundle:Default:modifybase 
 
 app:
     resource: "@AppBundle/Controller/"
