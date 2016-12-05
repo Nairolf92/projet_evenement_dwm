@@ -6,9 +6,9 @@
 	<div class="container-fluid">
 		<div class="row" style="background-color: black;">
 			<div class="col-lg-offset-4 col-lg-4">
-				<img class="img-responsive center-block" src="{{ asset('images/logo.png') }}" alt="logo" style="padding: 10px;min-width: 317px;height: 164px;">
+				<img class="center-block" src="{{ asset('images/logo_web.png') }}" alt="logo" style="padding: 10px;min-width: 317px;height: 164px;">
 			</div>
-			<div class="col-lg-offset-2 col-lg-2" style="margin-top: 50px;">
+			<div class="col-lg-offset-2 col-lg-2 col-xs-offset-4 col-md-offset-5" id="deco" style="margin-top: 50px;">
 				<h2><a class="admin" href="{{ path('logout') }}">Déconnexion</a></h2>
 			</div>
 		</div>
@@ -81,30 +81,12 @@
             					<i class="glyphicon glyphicon-pencil"></i>
             				</a>
             				{{ render(controller('AdminBundle:Default:modify', {'id': user.id , 'gender' : user.gender, 'firstName' : user.firstName, 'name' : user.name,'address' : user.address, 'city' : user.city, 'zipcode' : user.zipcode, 'birthDate' : user.birthDate.date, 'email' : user.email, 'date' : user.date.date, 'status' : user.status, 'device' : user.device, 'visited' : user.visited})) }}
-            				<a href="{{ path('delete', {'id' : user.id}) }}" title="Supprimer" onclick="ask_delete(event)">
+            				<a href="{{ path('delete', {'id' : user.id}) }}" title="Supprimer"
+            				 onclick="ask_delete()">
             					<i class="glyphicon glyphicon-remove" style="color: red;"></i>
             				</a>
             			</td>
-
 				    </tr>
-				    <script type="text/javascript">
-					    function ask_delete(event){
-					        event.preventDefault();
-					        swal({
-					          title: "Supprimer ?",
-					          text: "Etes-vous sûr de vouloir supprimer cet utilisateur ?",
-					          type: "warning",
-					          showCancelButton: true,
-					          confirmButtonColor: "#DD6B55",
-					          confirmButtonText: "Oui !",
-					          closeOnConfirm: false
-					        },
-					        function(){
-					          swal("Deleted!", "L'utilisateur a été supprimé", "success");
-							  window.location.href = '{{ path('delete', {'id' : user.id}) }}';
-        					});
-					    }
-					</script>
 				{% endfor %}
 		    </tbody>
 		</table>

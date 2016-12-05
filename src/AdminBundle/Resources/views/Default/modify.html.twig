@@ -11,26 +11,32 @@
 				{{ form_label(form.gender, "Civilité ") }}
 				{{ form_widget(form.gender,{value : gender ? '1':'0'} ) }}
 
-				{{ form_label(form.first_name, "Prenom ") }}
-				{{ form_widget(form.first_name, {'attr': {'data-validation' : 'alphanumeric', 'value' : firstName}} ) }}
+				{{ form_label(form.firstName, "Prenom ") }}
+				{{ form_widget(form.firstName, {'attr': {'data-validation' : 'alphanumeric', 'value' : firstName}} ) }}
+				{{ form_errors(form.firstName) }}
 
 				{{ form_label(form.name, "Nom ") }}
 				{{ form_widget(form.name, {'attr': {'data-validation' : 'alphanumeric', 'value' : name}} ) }}
+				{{ form_errors(form.name) }}
 
 				{{ form_label(form.address, "Adresse ") }}
 				{{ form_widget(form.address,{value : address} ) }}
+				{{ form_errors(form.address) }}
 
 				{{ form_label(form.city, "Ville ") }}
 				{{ form_widget(form.city, {'attr': {'data-validation' : 'alphanumeric', 'value' : city}} ) }}
+				{{ form_errors(form.city) }}
 
 				{{ form_label(form.zipcode, "Code Postal ") }}
 				{{ form_widget(form.zipcode, {'attr': {'data-validation' : 'number length', 'data-validation-length' : '5', 'value' : zipcode}} ) }}
+				{{ form_errors(form.zipcode) }}
 
 				{{ form_label(form.birthDate, "Date de naissance ") }}
 				{{ form_widget(form.birthDate, {'attr': {'class' : 'form-register-birth'}} ) }}
 
 				{{ form_label(form.email, "Email") }}
 				{{ form_widget(form.email, {'attr': {'style' : 'margin-bottom:10px;', 'data-validation' : 'email', 'value' : email}} ) }}
+				{{ form_errors(form.email) }}
 
 				{{ form_label(form.device, "Quel est votre support de prédilection ?") }}
 				{{ form_widget(form.device, {value : device ? '1':'0'} ) }}
@@ -43,8 +49,8 @@
 
 	        </div>
 	        <div class="modal-footer">
-	          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-	          	{{ form_widget(form.save, {'attr': {'class' : 'btn btn-success'}} ) }}
+	          <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+	          	{{ form_widget(form.Modifier, {'attr': {'class' : 'btn btn-success'}} ) }}
 				{{ form_end(form) }}
 	        </div>
 	    </div>

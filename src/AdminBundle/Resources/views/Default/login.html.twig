@@ -4,9 +4,8 @@
 
 {% block body %}
 	<div class="container-fluid">
-
 		<div class="row" style="background-color: black;">
-			<img class="img-responsive center-block" src="{{ asset('images/logo.png') }}" alt="logo" style="padding: 10px;">
+			<img class="img-responsive center-block" src="{{ asset('images/logo_web.png') }}" alt="logo" style="padding: 10px;">
 		</div>
 		{{ form_start(form, {'attr': {'class': 'form-horizontal', 'style' : 'margin-top:10px;color:black;', 'novalidate' : 'novalidate'}}) }}
 	  	{# Génération du label + error + widget pour un champ. #}
@@ -40,7 +39,7 @@
 		      {{ form_errors(form.password) }}
 		    </div>
 	  	</div>
-	  	{{ form_widget(form.save, {'attr': {'class': 'btn btn-default center-block'}}) }}
+	  	{{ form_widget(form.Connexion, {'attr': {'class': 'btn btn-default center-block'}}) }}
 	  	{{ form_end(form) }}
 	</div>
 {% endblock %}

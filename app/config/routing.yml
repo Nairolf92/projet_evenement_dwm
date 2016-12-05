@@ -24,11 +24,11 @@ modify:
     defaults:  
          _controller: AdminBundle:Default:modify 
 
-modifybase:
-    path:      /admin/users/modifybase
-    defaults:  
-         _controller: AdminBundle:Default:modifybase 
-
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+api:
+    resource: '.'
+    type:     'api_platform'
+    prefix:   '/api' # Optional

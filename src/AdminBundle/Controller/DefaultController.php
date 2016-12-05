@@ -62,14 +62,6 @@ class DefaultController extends Controller
 		));
     }
 
-    /**
-     * @Route("/admin/users/modifybase", name="modifybase")
-    */
-    public function modifybaseAction(Request $request)
-    {
-      dump($request->getForm());
-
-    }
      /**
      * @Route("/admin/users/modify", name="modify")
      */
@@ -79,11 +71,11 @@ class DefaultController extends Controller
 
       $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $user);
       $formBuilder
-          ->add('name',     TextType::class)
-          ->add('first_name',   TextType::class)
-          ->add('zipcode',   TextType::class)
-          ->add('address',   TextType::class)
-          ->add('city',   TextType::class)
+          ->add('name',     TextType::class, array('required' => true,))
+          ->add('firstName',   TextType::class, array('required' => true,))
+          ->add('zipcode',   TextType::class, array('required' => true,))
+          ->add('address',   TextType::class, array('required' => true,))
+          ->add('city',   TextType::class, array('required' => true,))
           ->add('gender', ChoiceType::class, array(
               'choices'  => array(
                   'Monsieur' => true,
@@ -112,11 +104,11 @@ class DefaultController extends Controller
               'choices'  => array(
                   'En attente de validation' => '0',
                   'Validée' => '1',
-                  'Acceptée' => '2'
+                  'Refusée' => '2'
               ),
               'data' => $status
           ))
-          ->add('save',      SubmitType::class)
+          ->add('Modifier',      SubmitType::class)
           ->add('id', HiddenType::class, array(
           'data' => $id))
       ;
@@ -125,16 +117,30 @@ class DefaultController extends Controller
         $form = $formBuilder->getForm();
        
         if ($request->isMethod('POST')) {
-          dump($form->getData());
-            $form->handleRequest($request);
-
-            if ($form->isValid()) {
-              $user->setAddress($form["address"]->getData());
-              $em = $this->getDoctrine()->getManager();
-              $em->persist($user);
-              $em->flush();
-              return $this->redirectToRoute('users');
-            }
+          // Cant handle request
+          $data = $request->request->all(); 
+          $userToModify = $this->getDoctrine()
+          ->getRepository('AdminBundle:User')
+          ->find($data['form']['id']);
+          $userToModify->setGender($data['form']['gender']);
+          $userToModify->setName($data['form']['name']);
+          $userToModify->setFirstName($data['form']['firstName']);
+          $userToModify->setAddress($data['form']['address']);
+          $userToModify->setCity($data['form']['city']);
+          $userToModify->setZipcode($data['form']['zipcode']);
+          $userToModify->setEmail($data['form']['email']);
+          $month = ($data['form']['birthDate']['month']);
+          $day = ($data['form']['birthDate']['day']);
+          $year = ($data['form']['birthDate']['year']);
+          $bd = $day.'-'.$month.'-'.$year;
+          $userToModify->setBirthDate(new \DateTime($bd));
+          $userToModify->setStatus($data['form']['status']);
+          $userToModify->setDevice($data['form']['device']);
+          $userToModify->setVisited($data['form']['visited']);
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($userToModify);
+          $em->flush();
+          return $this->redirectToRoute('users');
         }
     	return $this->render('AdminBundle:Default:modify.html.twig', array(
     		'form' => $form->createView(),
@@ -200,7 +206,7 @@ class DefaultController extends Controller
         $formBuilder
             ->add('login',     TextType::class)
             ->add('password',     PasswordType::class)
-            ->add('save',      SubmitType::class)
+            ->add('Connexion',      SubmitType::class)
         ;
 
         $form = $formBuilder->getForm();

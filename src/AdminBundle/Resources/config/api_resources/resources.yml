@@ -1,0 +1,17 @@
+AdminBundle\Entity\User:
+    itemOperations:
+        users:
+            method: 'GET'
+            path: '/users'
+        user:
+            method: 'GET'
+            path: '/user/{id}'
+        put:
+            method: 'PUT'
+            path: '/user/{id}/{id}/update'
+            hydra_context: { foo: 'bar' }
+
+        validate:
+            method: 'GET'
+        special:
+            route_name: 'validate'

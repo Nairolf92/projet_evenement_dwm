@@ -2,11 +2,18 @@
 
 namespace AdminBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
- *
+ * @ApiResource(itemOperations={
+ *     "users"={"method"="GET", "path"="/users"},    
+ *     "user"={"method"="GET", "path"="/user/{id}"},
+ *     "put"={"method"="PUT", "path"="/user/{id}/validate"},
+ *     "validate"={"route_name"="validate"}
+ * })
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\UserRepository")
  */
@@ -32,6 +39,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
+        @Assert\NotNull(message = "Merci d'entrer un nom.")
      */
     private $name = null;
 
@@ -39,6 +47,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
+        @Assert\NotNull(message = "Merci d'entrer un prénom.")
      */
     private $firstName = null;
 
@@ -53,6 +62,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="zipcode", type="string", length=255, nullable=true)
+        @Assert\NotNull(message = "Merci d'entrer un code postal.")
      */
     private $zipcode = null;
 
@@ -60,6 +70,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
+        @Assert\NotNull(message = "Merci d'entrer une adresse.")
      */
     private $address = null;
 
@@ -67,6 +78,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
+        @Assert\NotNull(message = "Merci d'entrer une ville.")
      */
     private $city = null;
 
@@ -81,6 +93,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
+        @Assert\NotNull(message = "Merci d'entrer un email.")
      */
     private $email = null;
 
