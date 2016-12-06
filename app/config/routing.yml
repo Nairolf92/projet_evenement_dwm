@@ -32,3 +32,11 @@ api:
     resource: '.'
     type:     'api_platform'
     prefix:   '/api' # Optional
+
+status:
+      path: 'api/user/{id}/status'
+      methods:  ['GET']
+      defaults:
+          _controller: 'AdminBundle:Api:index'
+          _api_resource_class: 'AdminBundle\Entity\User'
+          _api_item_operation_name: 'status'

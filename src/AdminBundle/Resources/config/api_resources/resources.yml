@@ -6,12 +6,7 @@ AdminBundle\Entity\User:
         user:
             method: 'GET'
             path: '/user/{id}'
-        put:
+        status:
             method: 'PUT'
-            path: '/user/{id}/{id}/update'
-            hydra_context: { foo: 'bar' }
-
-        validate:
-            method: 'GET'
         special:
-            route_name: 'validate'
+            route_name: 'user_status'

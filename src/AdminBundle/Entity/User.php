@@ -8,12 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
- * @ApiResource(itemOperations={
- *     "users"={"method"="GET", "path"="/users"},    
- *     "user"={"method"="GET", "path"="/user/{id}"},
- *     "put"={"method"="PUT", "path"="/user/{id}/validate"},
- *     "validate"={"route_name"="validate"}
- * })
+ * @ApiResource
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\UserRepository")
  */
