@@ -8,5 +8,8 @@ AdminBundle\Entity\User:
             path: '/user/{id}'
         status:
             method: 'PUT'
-        special:
-            route_name: 'user_status'
+        validate:
+            route_name: 'validate'
+        user:
+             method: 'POST'
+             path: '/user'

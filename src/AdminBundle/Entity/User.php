@@ -2,13 +2,11 @@
 
 namespace AdminBundle\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
- * @ApiResource
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\UserRepository")
  */

@@ -28,15 +28,34 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
-api:
-    resource: '.'
-    type:     'api_platform'
-    prefix:   '/api' # Optional
+# API SYMFONY DE BASE
+utilisateurs:
+    path:      /utilisateurs
+    defaults:  { _controller: AdminBundle:Api:utilisateurs }
+utilisateurs_seul:
+    path:      /utilisateurs/{id}
+    defaults:  { _controller: AdminBundle:Api:utilisateur }
+utilisateurs_seul_valid:
+    path:      /utilisateurs/{id}/valid
+    defaults:  { _controller: AdminBundle:Api:valid }
+utilisateurs_seul_refuse:
+    path:      /utilisateurs/{id}/refuse
+    defaults:  { _controller: AdminBundle:Api:refuse }
+utilisateurs_post:
+    path:      /inscription
+    defaults:  { _controller: AdminBundle:Api:postUtilisateurs }
 
-status:
-      path: 'api/user/{id}/status'
-      methods:  ['GET']
-      defaults:
-          _controller: 'AdminBundle:Api:index'
-          _api_resource_class: 'AdminBundle\Entity\User'
-          _api_item_operation_name: 'status'
+# API PLATFORM
+
+#api:
+#    resource: '.'
+#    type:     'api_platform'
+#    prefix:   '/api' # Optional
+
+#validate:
+#      path: 'api/user/{id}/validate'
+#      methods:  ['PUT']
+#      defaults:
+#          _controller: 'AdminBundle:Api:validate'
+#          _api_resource_class: 'AdminBundle\Entity\User'
+#          _api_item_operation_name: 'validate'
