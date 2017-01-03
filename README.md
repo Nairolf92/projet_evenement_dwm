@@ -1,2 +1,2 @@
 # projet_evenement_dwm
-Projet réalisé en Bachelor DWM à l'ECE-Tech consistant à créer un site internet ayant pour thème un évènement fictif ou réel
+Projet réalisé WEB en Bachelor DWM à l'ECE-Tech sous Symfony 3 (avec création d'une API Rest) en 2 mois de temps.
