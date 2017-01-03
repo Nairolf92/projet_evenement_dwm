@@ -34,43 +34,42 @@ class DefaultController extends Controller
 
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $user);
         $formBuilder
-            ->add('name',     TextType::class, array(
-                'required'    => true,
+            ->add('name', TextType::class, array(
+                'required' => true,
             ))
-            ->add('first_name',   TextType::class, array(
-                'required'    => true,
+            ->add('first_name', TextType::class, array(
+                'required' => true,
             ))
-            ->add('zipcode',   TextType::class, array(
-                'required'    => true,
+            ->add('zipcode', TextType::class, array(
+                'required' => true,
             ))
             ->add('address',   TextType::class, array('required' => true,))
             ->add('city',   TextType::class, array('required' => true,))
             ->add('gender', ChoiceType::class, array(
-                'choices'  => array(
+                'choices' => array(
                     'Monsieur' => true,
                     'Madame' => false,
                 ),
             ))
             ->add('device', ChoiceType::class, array(
-                'choices'  => array(
+                'choices' => array(
                     'PC' => true,
                     'Console' => false,
                 ),
             ))
             ->add('visited', ChoiceType::class, array(
-                'choices'  => array(
+                'choices' => array(
                     'Oui' => true,
                     'Non' => false,
                 ),
             ))
             ->add('birth_date', dateType::class, array(
                 'widget' => 'choice',
-                'years' => range(1910,2012)))
+                'years' => range(1910, 2012)))
             ->add('email', TextType::class, array(
-                'required'    => true,
+                'required' => true,
             ))
-            ->add('Valider',     SubmitType::class)
-        ;
+            ->add('Valider', SubmitType::class);
 
         $form = $formBuilder->getForm();
 
@@ -81,6 +80,7 @@ class DefaultController extends Controller
             $em->flush();
             return $this->redirectToRoute('homepage');
         }
+
         return $this->render('AppBundle:Default:register.html.twig', array(
           'form' => $form->createView(),
         ));
