@@ -65,7 +65,7 @@ class DefaultController extends Controller
      /**
      * @Route("/admin/users/modify", name="modify")
      */
-    public function modifyAction(Request $request, $id, $gender, $firstName, $name, $address, $city, $zipcode, $birthDate, $email,$status, $device, $visited)
+    public function modifyAction(Request $request, $id = null, $gender = null, $firstName = null, $name = null, $address = null, $city = null, $zipcode = null, $birthDate = null, $email = null, $status = null, $device = null, $visited = null)
     {
     	$user = new User();
 

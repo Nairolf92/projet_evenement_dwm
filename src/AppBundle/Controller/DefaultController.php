@@ -43,6 +43,8 @@ class DefaultController extends Controller
             ->add('zipcode',   TextType::class, array(
                 'required'    => true,
             ))
+            ->add('address',   TextType::class, array('required' => true,))
+            ->add('city',   TextType::class, array('required' => true,))
             ->add('gender', ChoiceType::class, array(
                 'choices'  => array(
                     'Monsieur' => true,
@@ -74,10 +76,9 @@ class DefaultController extends Controller
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($user);
-                $em->flush();
-            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
             return $this->redirectToRoute('homepage');
         }
         return $this->render('AppBundle:Default:register.html.twig', array(
