@@ -430,8 +430,8 @@
   }
 
   #sponsor .item ul li {
-    width: 45%;
-    margin-right: 5%
+    width: 100%;
+    margin: auto;
   }
 
   #sponsor .item ul li:last-child {

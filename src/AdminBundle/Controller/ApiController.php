@@ -146,32 +146,41 @@ class ApiController extends Controller
     public function postUtilisateursAction(Request $request)
     {
         $user = new User();
-        $user
-            ->setName($request->get('name'))
-            ->setAddress($request->get('address'));
+        $user->setName($request->get('name'));
+        $user->setGender($request->get('gender'));
+        $user->setFirstName($request->get('firstname'));
+        $user->setZipcode($request->get('zipcode'));
+        $user->setAddress($request->get('address'));
+        $user->setCity($request->get('city'));
+        $user->setBirthDate(new \Datetime());
+        $user->setEmail($request->get('email'));
 
-        $em = $this->get('doctrine.orm.entity_manager');
-        $em->persist($user);
-        $em->flush();
+        if($user->getName() && $user->getAddress() && $user->getFirstName() && $user->getCity() && $user->getEmail()){
+            $em = $this->get('doctrine.orm.entity_manager');
+            $em->persist($user);
+            $em->flush();
 
-        $formatted = [
-            'id' => $user->getId(),
-            'gender' => $user->getGender(),
-            'name' => $user->getName(),
-            'firstName' => $user->getFirstName(),
-            'password' => $user->getPassword(),
-            'zipcode' => $user->getZipcode(),
-            'address' => $user->getAddress(),
-            'city' => $user->getCity(),
-            'birthDate' => $user->getBirthDate(),
-            'email' => $user->getEmail(),
-            'device' => $user->getDevice(),
-            'visited' => $user->getVisited(),
-            'date' => $user->getDate(),
-            'status' => $user->getStatus(),
-            'deleted' => $user->getDeleted(),
-        ];
+            $formatted = [
+                'id' => $user->getId(),
+                'gender' => $user->getGender(),
+                'name' => $user->getName(),
+                'firstName' => $user->getFirstName(),
+                'password' => $user->getPassword(),
+                'zipcode' => $user->getZipcode(),
+                'address' => $user->getAddress(),
+                'city' => $user->getCity(),
+                'birthDate' => $user->getBirthDate(),
+                'email' => $user->getEmail(),
+                'device' => $user->getDevice(),
+                'visited' => $user->getVisited(),
+                'date' => $user->getDate(),
+                'status' => $user->getStatus(),
+                'deleted' => $user->getDeleted(),
+            ];
 
-        return new JsonResponse($formatted);
+            return new JsonResponse(['message' => 'Inscription de l\'utilisateur réussie'], Response::HTTP_OK);
+        } else {
+            return new JsonResponse(['message' => 'L\'inscription a échouée'], Response::HTTP_BAD_REQUEST);
+        }
     }
 }
