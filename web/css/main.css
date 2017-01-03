@@ -863,3 +863,17 @@ body{
     top: -15px;
   }
 }
+#location{
+  background: #75B45E;
+  padding: 6%;
+}
+#location h1{
+  text-align: center;
+  font-size: 3em;
+  margin-bottom: 58px;
+  margin-top: -58px;
+}
+#location .content{
+  font-size: 1.3em;
+  font-family: arial;
+}
