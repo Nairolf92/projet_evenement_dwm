@@ -800,9 +800,27 @@ body{
   position: relative;
   top: 92px;
   border: solid white 4px;
-  width: 480px;
+  width: 40%;
   background-color: #fff3;
   transition-duration: 400ms;
+}
+
+@media screen and (max-width: 1100px) {
+  .link-register {
+    font-size: 2em;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    top: 92px;
+    border: solid white 4px;
+    min-width: 200px;
+    background-color: #fff3;
+    transition-duration: 400ms;
+  }
+
+  #gmap{
+    height: 250px;
+  }
 }
 .link-register:hover{
   background-color: #ffffff4d;
@@ -815,7 +833,6 @@ body{
 
 .form-register button{
   margin-top: 15px;
-  margin-bottom: 25px;
 }
 
 @media screen and (max-width: 1300px) {

@@ -247,8 +247,12 @@
   }
 
   #sponsor .item ul li {
-    width: 30%;
-    margin-right:3%
+    width: 100%;
+    margin-right:3%;
+  }
+
+  #sponsor .item ul li img {
+    margin: auto;
   }
 
   #sponsor .item ul li:last-child {

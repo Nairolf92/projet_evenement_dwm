@@ -34,10 +34,15 @@ class DefaultController extends Controller
 
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $user);
         $formBuilder
-            ->add('name',     TextType::class)
-            ->add('first_name',   TextType::class)
-            ->add('zipcode',   TextType::class)
-            ->add('gender', CheckboxType::class)
+            ->add('name',     TextType::class, array(
+                'required'    => true,
+            ))
+            ->add('first_name',   TextType::class, array(
+                'required'    => true,
+            ))
+            ->add('zipcode',   TextType::class, array(
+                'required'    => true,
+            ))
             ->add('gender', ChoiceType::class, array(
                 'choices'  => array(
                     'Monsieur' => true,
@@ -58,19 +63,20 @@ class DefaultController extends Controller
             ))
             ->add('birth_date', dateType::class, array(
                 'widget' => 'choice',
-                'years' => range(1900,2012)))
-            ->add('email', TextType::class)
-            ->add('save',      SubmitType::class)
+                'years' => range(1910,2012)))
+            ->add('email', TextType::class, array(
+                'required'    => true,
+            ))
+            ->add('Valider',     SubmitType::class)
         ;
 
         $form = $formBuilder->getForm();
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
-            if ($form->isValid()) {
-              $em = $this->getDoctrine()->getManager();
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
-              $em->flush();
+                $em->flush();
             }
             return $this->redirectToRoute('homepage');
         }
